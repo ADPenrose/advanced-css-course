@@ -6,3 +6,201 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+/* Global reset */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* Project-wide font definitions */
+body {
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.7;
+	color: #777;
+	padding: 30px;
+}
+
+.header {
+	height: 95vh;
+	background-image: linear-gradient(
+			to right bottom,
+			rgba(126, 213, 111, 0.8),
+			rgba(40, 180, 133, 0.8)
+		),
+		url(../img/hero.jpg);
+	background-size: cover;
+	background-position: top;
+	/* Clips image according to the coordinates specified to form a certain polygon */
+	/* Coordinate pairs are x y, and the points are set counter-clockwise */
+	clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+	position: relative;
+}
+
+.logo-box {
+	position: absolute;
+	top: 40px;
+	left: 40px;
+}
+
+.logo {
+	height: 35px;
+}
+
+.text-box {
+	position: absolute;
+	/* In relation to parent element */
+	top: 40%;
+	left: 50%;
+	/* In relation to the element itself */
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.heading-primary {
+	color: #fff;
+	text-transform: uppercase;
+	/* A hack to fix text moving up after animations */
+	backface-visibility: hidden;
+	margin-bottom: 60px;
+}
+
+.heading-primary-main {
+	display: block;
+	font-size: 60px;
+	font-weight: 400;
+	letter-spacing: 35px;
+	/* Animation settings */
+	animation-name: moveInLeft;
+	animation-duration: 1s;
+
+	/* Waits 3 sec before starting the animation */
+	/* animation-delay: 3s; */
+
+	/* Establishes how many times the animation will occur */
+	/* animation-iteration-count: 3; */
+
+	/* Establishes how an animation progresses through the duration of each cycle */
+	animation-timing-function: ease-out;
+}
+
+.heading-primary-sub {
+	display: block;
+	font-size: 20px;
+	font-weight: 7s00;
+	letter-spacing: 17.4px;
+	/* Animation settings using the shorthand animation property */
+	animation: 1s ease-out moveInRight;
+}
+
+@keyframes moveInLeft {
+	/* from = 0% */
+	from {
+		opacity: 0;
+		transform: translateX(-100px);
+	}
+
+	80% {
+		transform: translateX(10px);
+	}
+
+	/* to = 100% */
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes moveInRight {
+	/* from = 0% */
+	from {
+		opacity: 0;
+		transform: translateX(100px);
+	}
+
+	80% {
+		transform: translateX(-10px);
+	}
+
+	/* to = 100% */
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes moveInBottom {
+	/* from = 0% */
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+
+	/* to = 100% */
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.btn:link,
+.btn:visited {
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 15px 40px;
+	display: inline-block;
+	border-radius: 100px;
+	transition: all 0.2s;
+	position: relative;
+}
+
+.btn:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+	transform: translateY(-1px);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+	background-color: #fff;
+	color: #777;
+}
+
+.btn::after {
+	content: '';
+	display: inline-block;
+	/* With respect of the btn parent element*/
+	height: 100%;
+	width: 100%;
+	border-radius: 100px;
+	/* Placing it behind the button */
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	transition: all 0.4s;
+}
+
+.btn-white::after {
+	background-color: white;
+}
+
+.btn:hover::after {
+	/* Scale with different values on x and y */
+	transform: scaleX(1.4) scaleY(1.6);
+	opacity: 0;
+}
+
+.btn-animated {
+	animation: 0.5s ease-out moveInBottom 0.75s;
+	/* Apply the styles of the 0% before the animation starts, */
+	/* so that the button does not appear in its final state and then */
+	/* the animation occurs */
+	animation-fill-mode: backwards;
+}
