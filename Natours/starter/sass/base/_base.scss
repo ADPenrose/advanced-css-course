@@ -1,0 +1,18 @@
+// Here are the basic project definitions. It is like a boilerplate.
+/* Global reset */
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+/* Project-wide font definitions */
+body {
+	box-sizing: border-box;
+}
