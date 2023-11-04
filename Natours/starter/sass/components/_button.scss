@@ -2,7 +2,7 @@
 	&:link,
 	&:visited {
 		text-transform: uppercase;
-		font-size: 1.6rem;
+		font-size: $default-font-size;
 		text-decoration: none;
 		padding: 1.5rem 4rem;
 		display: inline-block;
@@ -57,5 +57,30 @@
 		/* so that the button does not appear in its final state and then */
 		/* the animation occurs */
 		animation-fill-mode: backwards;
+	}
+
+	&-text {
+		&:link,
+		&:visited {
+			font-size: $default-font-size;
+			color: $color-primary;
+			display: inline-block;
+			text-decoration: none;
+			border-bottom: 1px solid $color-primary;
+			padding: 3px 1rem;
+			transition: all 0.2s;
+		}
+
+		&:hover {
+			background-color: $color-primary;
+			color: $color-white;
+			box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+			transform: translateY(-2px);
+		}
+
+		&:active {
+			box-shadow: 0 1rem 1rem rgba($color-black, 0.15);
+			transform: translateY(0px);
+		}
 	}
 }

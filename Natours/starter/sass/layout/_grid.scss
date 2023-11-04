@@ -1,6 +1,5 @@
 .row {
 	max-width: $grid-width;
-	background-color: #eee;
 	// Centering a block element inside of another block element
 	margin: 0 auto;
 
@@ -12,7 +11,6 @@
 
 	// Selecting all of the elements that have a class that start with the specified text.
 	[class^='col-'] {
-		background-color: orangered;
 		float: left;
 
 		&:not(:last-child) {
