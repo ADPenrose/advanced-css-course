@@ -1,0 +1,140 @@
+.card {
+	// This determines the distance between the z=0 plane and the user.
+	// Allows us to five a 3D-positioned element some perspective. In
+	// this case, we set a really high value to give a certain realism
+	// to the card rotation (the lower the value, the more dramatic the
+	//  perspective). It also needs to enclose a child element,
+	// which will be the rotated element.
+	perspective: 150rem;
+	// This helps get the cards one on top of the other.
+	position: relative;
+	// We need to specify the height manually here, because having all of
+	// the elements on a container in absolute positioning colapses the
+	// height of said parent container, and there is no 'clearfix' for that.
+	height: 52rem;
+
+	&__side {
+		height: 52rem;
+		// Defining a custom transition timing function.
+		transition: all 0.8s ease;
+		// This helps get the cards one on top of the other.
+		position: absolute;
+		top: 0;
+		left: 0;
+		// Since we give the cards absoulte poistion, they start taking
+		// only as much space as their content needs. Thus, we need to specify
+		// their width to be 100% of the container they are in.
+		width: 100%;
+		// "hidden" hides the backpart of an element. This is what we want; we
+		// don't want to see the back of the cards, only the front, so that
+		// the rotation reveals those fronts.
+		backface-visibility: hidden;
+		border-radius: 3px;
+		box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+		// Hides the square edges of the background image.
+		overflow: hidden;
+
+		&--front {
+			background-color: $color-white;
+		}
+
+		&--back {
+			// The back starts rotated by 180deg.
+			transform: rotateY(180deg);
+
+			&-1 {
+				// Linear gradient as background color.
+				background: linear-gradient(
+					to right bottom,
+					$color-secondary-light,
+					$color-secondary-dark
+				);
+			}
+		}
+	}
+
+	// If we have .card:hover, then the card__side--front that is inside of the
+	// hovered card needs to rotate to 180deg on the Y axis.
+	&:hover &__side--front {
+		transform: rotateY(180deg);
+	}
+
+	// If we have .card:hover, then the card__side--back that is inside of the
+	// hovered card needs to rotate to 360deg on the Y axis.
+	&:hover &__side--back {
+		transform: rotateY(360deg);
+	}
+
+	// Front side styling
+	&__picture {
+		background-size: cover;
+		height: 23rem;
+		background-blend-mode: screen;
+		clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+		&--1 {
+			background-image: linear-gradient(
+					to right bottom,
+					$color-secondary-light,
+					$color-secondary-dark
+				),
+				url(../img/nat-5.jpg);
+		}
+
+		&--2 {
+			background-image: url(../img/nat-5.jpg);
+		}
+
+		&--3 {
+			background-image: url(../img/nat-5.jpg);
+		}
+	}
+
+	&__heading {
+		font-size: 2.8rem;
+		font-weight: 300;
+		text-transform: uppercase;
+		text-align: right;
+		color: $color-white;
+		position: absolute;
+		top: 12rem;
+		right: 2rem;
+		width: 75%;
+	}
+
+	&__heading-span {
+		padding: 1rem 1.5rem;
+		// This specifies how an element's fragments (e.g. a single line of text that breaks
+		// into two or more lines due to space constraints) should be rendered.
+		-webkit-box-decoration-break: clone;
+		box-decoration-break: clone;
+
+		&--1 {
+			background-image: linear-gradient(
+				to right bottom,
+				rgba($color-secondary-light, 0.85),
+				rgba($color-secondary-dark, 0.85)
+			);
+		}
+	}
+
+	&__details {
+		padding: 3rem;
+
+		ul {
+			list-style: none;
+			width: 80%;
+			margin: 0 auto;
+
+			li {
+				text-align: center;
+				font-size: 1.5rem;
+				padding: 1rem;
+
+				&:not(:last-child) {
+					border-bottom: 1px solid $color-grey-light-2;
+				}
+			}
+		}
+	}
+}
