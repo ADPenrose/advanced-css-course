@@ -1,0 +1,69 @@
+.story {
+	width: 75%;
+	margin: 0 auto;
+	box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+	background-color: rgba($color-white, 0.6);
+	border-radius: 3px;
+	padding: 6rem;
+	padding-left: 9rem;
+	font-size: $default-font-size;
+	transform: skewX(-12deg);
+
+	// Skewing the component
+	&__shape {
+		width: 15rem;
+		height: 15rem;
+		float: left;
+		// This only works if the element is floated and has defined dimensions.
+		// The radius is 50% of the elements width, and the center is located at 50%
+		// of its width and height.
+		shape-outside: circle(50% at 50% 50%);
+		// This is so that we can pysicially see the circle, but it does not affect the floating.
+		clip-path: circle(50% at 50% 50%);
+		// Moving the circle a bit. Since there is already a transform applied,
+		// we cannot apply another one without this block taking presedence. Thus,
+		// we apply the property here instead of using the & > * selector.
+		transform: translateX(-3rem) skewX(12deg);
+		position: relative;
+	}
+
+	&__img {
+		height: 100%;
+		transform: translateX(-4rem) scale(1.4);
+		transition: all 0.5s;
+	}
+
+	// Since there is already a transform applied,
+	// we cannot apply another one without this block taking presedence. Thus,
+	// we apply the property here instead of using the & > * selector.
+	&__text {
+		transform: skewX(12deg);
+	}
+
+	&__caption {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		// We put 20% on the y coordinate so that it is a bit down, which helps with the animation.
+		transform: translate(-50%, 20%);
+		color: $color-white;
+		text-transform: uppercase;
+		font-size: 1.7rem;
+		text-align: center;
+		opacity: 0;
+		transition: all 0.5s;
+		// backface-visibility: hidden;
+	}
+
+	&:hover &__caption {
+		opacity: 1;
+		// In order for this to work, both functions should be the same
+		transform: translate(-50%, -50%);
+	}
+
+	&:hover &__img {
+		transform: translateX(-4rem) scale(1);
+		// Applying some filters.
+		filter: blur(3px) brightness(80%);
+	}
+}

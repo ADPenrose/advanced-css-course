@@ -1,0 +1,17 @@
+.bg-video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+	opacity: 0.15;
+
+	&__content {
+		// Fit the video on the container, and adjust it so that it covers
+		// it all without loosing its aspect ratio.
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+	}
+}
